@@ -1,5 +1,7 @@
 # alfred-toot
 
+Original repository is removed because I found out a file contains my login credential.
+
 ### Send toot from Alfred
 
 - Input instance address, key code, re-run the workflow and you're good to go.
