@@ -30,6 +30,12 @@ Original repository is removed because I found out a file contains my login cred
 - Reply to toot with status id, add `!to:` and status id at the back
 - i.e. `status content !to: 1002345678910111213`
 
+### Line break (1.0-5)
+
+- Switched to multiple line input window
+- may change workflow when working with keyboard shortcut; just pressing return key would not send toot - tab - tab - space will do though
+- if not in fond with this behaviour, you can use [version 1.0-4](https://github.com/Canorus/alfred-toot/raw/master/old/Alfred-toot_1.0-4.alfredworkflow) from `old` directory. Line break will not work. Will be working on it tho, no ETA.
+
 ------
 
 ### Todo
