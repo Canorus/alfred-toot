@@ -14,7 +14,6 @@ Original repository is removed because I found out a file contains my login cred
 ### Content Warning
 
 - append `!cw:` after your toot and continue with your spoiler message. 
-- ~~should be placed after your toot because I can't decide where spoiler message ends.~~ no longer necessary as of 1.0-3
 
 ### Visibility (1.0-3)
 
@@ -24,7 +23,12 @@ Original repository is removed because I found out a file contains my login cred
 
 ### Clipboard image (1.0-4)
 
-- Append image from clipboard, by adding `!clipboard:` of `!cb:`
+- Append image from clipboard, by adding `!clipboard:` or `!cb:`
+
+### Reply to (1.0-5)
+
+- Reply to toot with status id, add `!to:` and status id at the back
+- i.e. `status content !to: 1002345678910111213`
 
 ------
 
@@ -33,20 +37,25 @@ Original repository is removed because I found out a file contains my login cred
 - [x] ~~Contents warning message~~
 - [ ] multiple accounts
 - [x] ~~visibility~~
-- [ ] line break
-- [x] Append single image from clipboard
+- [x] ~~line break~~
+- [x] ~~Append single image from clipboard~~
+- [x] ~~reply to~~
 
 ------
 
 ### Changelog
 
+- 1.0-5
+  - switched to multiline input popup for line break; may change keyboard shortcut
+  - reply to toot with toot id
+  - updated Changelog
+- 1.0-4
+  - added attaching single image from clipboard
+- 1.0-3
+  - added visibility option on sending toot
 - 1.0-1
   - added Content Warning
   - added workflow icon
-- 1.0-3
-  - added visibility option on sending toot
-- 1.0-4
-  - added attching single image from clipboard
 
 ------
 

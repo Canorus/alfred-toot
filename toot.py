@@ -1,11 +1,12 @@
 import sys
-from plistlib import readPlist
+from plistlib import load
 import requests
 import unicodedata
 import re
 
 toot = sys.argv[1]
-info = readPlist('info.plist')
+#info = readPlist('info.plist')
+info = load(open('info.plist','rb'))
 access = info['variables']['access_key']
 instance = info['variables']['instance']
 status_h = {'Authorization':'Bearer '+access}
@@ -40,9 +41,13 @@ try:
     print(toot_split)
     toot_split.insert(0,'status')
 except:
+    # if finding param breaks
+    # just make status into hd dic
+    # else it will be handled after converting params
     hd['status']=toot
     split = 0
 
+# alternatives
 try:
     toot_split[toot_split.index('cw')] = 'spoiler_text'
 except:
@@ -53,15 +58,25 @@ try:
 except:
     pass
 
+try:
+    toot_split[toot_split.index('cb')] = 'clipboard'
+except:
+    pass
+
+try:
+    toot_split[toot_split.index('to')] = 'in_reply_to_id'
+except:
+    pass
+
+# make params into hd dic
+
 if split:
     for i in range(len(toot_sp)):
         hd[toot_split[i]] = unicodedata.normalize('NFC',toot_sp[i])
 
-if 'clipboard' in toot_split or 'cb' in toot_split:
+if 'clipboard' in toot_split:
     media_id = ''
-    print('clipboard attachment detected')
     clipboard_image()
-    print('media_id outside function is '+media_id)
     try:
         del hd['clipboard']
     except:
