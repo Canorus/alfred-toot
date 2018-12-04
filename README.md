@@ -40,6 +40,9 @@ Original repository is removed because I found out a file contains my login cred
 
 ### Todo
 
+- [ ] Toot ending with exclamation mark. This is **urgent**
+- [ ] `reply` to notification hmm
+- [ ] `-web`
 - [x] ~~Contents warning message~~
 - [ ] multiple accounts
 - [x] ~~visibility~~
