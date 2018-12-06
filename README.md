@@ -34,14 +34,19 @@ Original repository is removed because I found out a file contains my login cred
 
 - Switched to multiple line input window
 - may change workflow when working with keyboard shortcut; just pressing return key would not send toot - tab - tab - space will do though
-- if not in fond with this behaviour, you can use [version 1.0-4](https://github.com/Canorus/alfred-toot/raw/master/old/Alfred-toot_1.0-4.alfredworkflow) from `old` directory. Line break will not work. Will be working on it tho, no ETA.
+- if not in fond with this behaviour, you can use [version 1.0-4](https://github.com/Canorus/alfred-toot/raw/master/old/Alfred-toot_1.0-4.alfredworkflow) from `old` directory. Line break will not work. I will work on it tho, no ETA.
+
+### reply to mention (1.0-6)
+
+- keyword `mreply` will list mentions you got(numbers may vary, check your alfred preferences), and type your reply and hit return.
+- Since this feature uses Script filter, you might want to wait couple of seconds before hitting return key. This might change in the future.
 
 ------
 
 ### Todo
 
 - [ ] Toot ending with exclamation mark. This is **urgent**
-- [ ] `reply` to notification hmm
+- [x] `reply` to notification hmm
 - [ ] `-web`
 - [x] ~~Contents warning message~~
 - [ ] multiple accounts

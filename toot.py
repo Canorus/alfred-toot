@@ -74,6 +74,11 @@ if split:
     for i in range(len(toot_sp)):
         hd[toot_split[i]] = unicodedata.normalize('NFC',toot_sp[i])
 
+if 'prev' in toot_sp:
+    account_id = requests.get(instance+'/api/v1/accounts/verify_credentials',headers=status_h).json()['id']
+    prev_status = requests.get(instance+'/api/v1/accounts/'+account_id+'/statuses',headers=status_h).json()[0]['id']
+    hd['in_reply_to_id'] =  prev_status
+
 if 'clipboard' in toot_split:
     media_id = ''
     clipboard_image()
