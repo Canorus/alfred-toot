@@ -38,7 +38,7 @@ Original repository is removed because I found out a file contains my login cred
 
 ### Reply to mention (1.0-6)
 
-- keyword `mreply` will list mentions you got(numbers may vary, check your alfred preferences), and type your reply and hit return.
+- keyword `mreply` will list mentions you got, and type your reply and hit return.
 - Since this feature uses Script filter, you might want to wait couple of seconds before hitting return key. This might change in the future.
 
 ------
