@@ -11,6 +11,11 @@ Original repository is removed because I found out a file contains my login cred
 - **Requires registered version of Alfred**
 - All versions are at [Releases page](https://github.com/Canorus/alfred-toot/releases)
 
+### Requirements
+
+- Python 3
+- `requests` python module. look [here](https://stackoverflow.com/a/17309309) to see how to install
+
 ### Content Warning
 
 - append `!cw:` after your toot and continue with your spoiler message. 
@@ -47,6 +52,7 @@ Original repository is removed because I found out a file contains my login cred
 
 - [x] ~~Toot ending with exclamation mark. This is **urgent**~~ fixed on 1.0-61
 - [x] ~~`mreply` to notification hmm~~
+- [ ] toot parameters when `mreply`ing
 - [ ] `-web`
 - [x] ~~Contents warning message~~
 - [ ] multiple accounts
