@@ -45,8 +45,8 @@ Original repository is removed because I found out a file contains my login cred
 
 ### Todo
 
-- [ ] Toot ending with exclamation mark. This is **urgent**
-- [x] `reply` to notification hmm
+- [x] ~~Toot ending with exclamation mark. This is **urgent**~~ fixed on 1.0-61
+- [x] ~~`mreply` to notification hmm~~
 - [ ] `-web`
 - [x] ~~Contents warning message~~
 - [ ] multiple accounts
