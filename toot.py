@@ -92,6 +92,17 @@ if 'in_reply_to_id' in toot_split and 'silent' not in toot_split:
     who_reply_to = json.loads(requests.get(instance+'/api/v1/statuses/'+hd['in_reply_to_id']).content.decode('utf-8'))['account']['acct']
     hd['status'] += ' @'+who_reply_to
 
+if 'web' in toot_split:
+    try:
+        import subprocess
+        currentTabUrl = str(subprocess.check_output(['osascript','browser.scpt']))[2:-3]
+        url = currentTabUrl
+        if currentTabUrl == 'browser not in front':
+            raise
+        hd['status'] += '\n\n'+url # might need encoding. later
+    except:
+        pass
+
 #print('hd is '+str(hd))
 st = requests.post(instance+'/api/v1/statuses',data=hd,headers=status_h)
-print(st.json())
+#print(st.json())
