@@ -46,6 +46,10 @@ Original repository is removed because I found out a file contains my login cred
 - keyword `mreply` will list mentions you got, and type your reply and hit return.
 - Since this feature uses Script filter, you might want to wait couple of seconds before hitting return key. This might change in the future.
 
+### Attach URL (1.0-7)
+
+- Append url you're now browsing. Supports Safari and Chrome. Keyword `!web:`
+
 ------
 
 ### Todo

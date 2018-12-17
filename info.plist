@@ -741,15 +741,15 @@ end alfred_script</string>
 	<key>variables</key>
 	<dict>
 		<key>access_key</key>
-		<string>b757fa7ae531c6b545af75e7ffd572c8957d82edd44374befc0013fe6ecc0c32</string>
+		<string>9c158185d130c7a3d349b04dc9473739970a77240f6a75e76e53805c6454d33c</string>
 		<key>client_id</key>
-		<string>1579174f263612777d842ef5b4f86cae4a30792fcdb1c5702b980f717f2ce63f</string>
+		<string>df34459f2524ace554edd7e52e952bdb5371cb5402cc576403badb908ee3e487</string>
 		<key>client_secret</key>
-		<string>8a68c275cb3bb2ac9fcaaaad80d6d5c6e01caae07b0937d8f97900a0391689e1</string>
+		<string>bd1fdf5611f87780128b6d366e2af8b63dff0924976e7eaa17de581bf05261ce</string>
 		<key>instance</key>
 		<string>https://twingyeo.kr</string>
 		<key>key_code</key>
-		<string>326d0ea10bee13a7342ea82862c13ac45d8092ff3d0519347e519fae419dc480</string>
+		<string>aeb5218ed4e00258c158e9fffc510416b78249b0e7ef5b6e0836a216b5f236d3</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
