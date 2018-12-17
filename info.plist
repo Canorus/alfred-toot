@@ -62,19 +62,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>56B9F702-17D8-47AD-9B96-53AD59054CEF</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>6BFCE522-7C78-496A-AB7D-D4F6EAFCD3E7</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>5F84ED0E-132B-4EC1-998A-0B4F1316A846</key>
 		<array>
 			<dict>
@@ -88,11 +75,13 @@
 				<false/>
 			</dict>
 		</array>
+		<key>6BFCE522-7C78-496A-AB7D-D4F6EAFCD3E7</key>
+		<array/>
 		<key>73419E5C-97A2-45A7-996C-4E635F52A0E3</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>56B9F702-17D8-47AD-9B96-53AD59054CEF</string>
+				<string>6BFCE522-7C78-496A-AB7D-D4F6EAFCD3E7</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -197,6 +186,24 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+	set res to text returned of (display dialog "what's going on?" default answer "\n")
+	return res
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>73419E5C-97A2-45A7-996C-4E635F52A0E3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -228,24 +235,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(q)
-	set res to text returned of (display dialog "what's going on?" default answer "\n")
-	return res
-end alfred_script</string>
-				<key>cachescript</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
-			<key>uid</key>
-			<string>73419E5C-97A2-45A7-996C-4E635F52A0E3</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -265,23 +254,6 @@ end alfred_script</string>
 			<string>6BFCE522-7C78-496A-AB7D-D4F6EAFCD3E7</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>'{query}', {allvars}</string>
-				<key>cleardebuggertext</key>
-				<false/>
-				<key>processoutputs</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.debug</string>
-			<key>uid</key>
-			<string>56B9F702-17D8-47AD-9B96-53AD59054CEF</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -328,25 +300,6 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>inputstring</key>
-				<string>{var:type}</string>
-				<key>matchcasesensitive</key>
-				<true/>
-				<key>matchmode</key>
-				<integer>0</integer>
-				<key>matchstring</key>
-				<string>instance</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.filter</string>
-			<key>uid</key>
-			<string>32C7F84B-41E8-42BC-9A7A-23761E563F45</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -366,6 +319,25 @@ end alfred_script</string>
 			<string>EA52DC78-6C40-4B94-BB06-89E86F008452</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputstring</key>
+				<string>{var:type}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>matchstring</key>
+				<string>instance</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>32C7F84B-41E8-42BC-9A7A-23761E563F45</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -478,6 +450,29 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/usr/local/bin/python3 boost.py "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>23296F28-D3F2-4EDD-BB13-C158F5563758</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>keyword</key>
@@ -499,25 +494,23 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>/usr/local/bin/python3 boost.py "{query}"</string>
-				<key>scriptargtype</key>
+				<key>argumenttype</key>
 				<integer>0</integer>
-				<key>scriptfile</key>
+				<key>keyword</key>
+				<string>fav</string>
+				<key>subtext</key>
 				<string></string>
-				<key>type</key>
-				<integer>0</integer>
+				<key>text</key>
+				<string>Favourite Toot</string>
+				<key>withspace</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>23296F28-D3F2-4EDD-BB13-C158F5563758</string>
+			<string>2E9A0908-46C8-4E87-81B5-49F60BF40D41</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -545,23 +538,25 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>fav</string>
-				<key>subtext</key>
-				<string></string>
-				<key>text</key>
-				<string>Favourite Toot</string>
-				<key>withspace</key>
+				<key>concurrently</key>
 				<true/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/usr/local/bin/python3 reply.py "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>2E9A0908-46C8-4E87-81B5-49F60BF40D41</string>
+			<string>25243FEB-8858-410F-9838-906747792D09</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -610,29 +605,6 @@ end alfred_script</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<true/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>/usr/local/bin/python3 reply.py "{query}"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>25243FEB-8858-410F-9838-906747792D09</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>See github https://github.com/Canorus/alfred-toot</string>
@@ -657,7 +629,7 @@ end alfred_script</string>
 			<key>note</key>
 			<string>is access</string>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>490</integer>
 			<key>ypos</key>
 			<integer>450</integer>
 		</dict>
@@ -673,7 +645,7 @@ end alfred_script</string>
 			<key>note</key>
 			<string>is instance</string>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>490</integer>
 			<key>ypos</key>
 			<integer>270</integer>
 		</dict>
@@ -690,13 +662,6 @@ end alfred_script</string>
 			<integer>50</integer>
 			<key>ypos</key>
 			<integer>50</integer>
-		</dict>
-		<key>56B9F702-17D8-47AD-9B96-53AD59054CEF</key>
-		<dict>
-			<key>xpos</key>
-			<integer>620</integer>
-			<key>ypos</key>
-			<integer>80</integer>
 		</dict>
 		<key>5F84ED0E-132B-4EC1-998A-0B4F1316A846</key>
 		<dict>
@@ -722,7 +687,7 @@ end alfred_script</string>
 		<key>73419E5C-97A2-45A7-996C-4E635F52A0E3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>450</integer>
 			<key>ypos</key>
 			<integer>50</integer>
 		</dict>
@@ -731,7 +696,7 @@ end alfred_script</string>
 			<key>note</key>
 			<string>is toot</string>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>490</integer>
 			<key>ypos</key>
 			<integer>180</integer>
 		</dict>
@@ -754,7 +719,7 @@ end alfred_script</string>
 			<key>note</key>
 			<string>is code</string>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>490</integer>
 			<key>ypos</key>
 			<integer>360</integer>
 		</dict>
@@ -795,7 +760,7 @@ end alfred_script</string>
 		<string>key_code</string>
 	</array>
 	<key>version</key>
-	<string>1.0-61</string>
+	<string>1.0-7</string>
 	<key>webaddress</key>
 	<string>http://canor.cf</string>
 </dict>
