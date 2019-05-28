@@ -75,8 +75,10 @@ if split:
 if 'prev' in toot_split:
     account_id = requests.get(instance+'/api/v1/accounts/verify_credentials',headers=status_h).json()['id']
     #print(requests.get(instance+'/api/v1/accounts/verify_credentials',headers=status_h).json())
-    prev_status = requests.get(instance+'/api/v1/accounts/'+account_id+'/statuses',headers=status_h).json()[0]['id']
-    hd['in_reply_to_id']=prev_status
+    prev_status = requests.get(instance+'/api/v1/accounts/'+account_id+'/statuses',headers=status_h).json()[0]
+    hd['in_reply_to_id']=prev_status['id']
+    hd['spoiler_text'] = prev_status['spoiler_text']
+    hd['visibility'] = prev_status['visibility']
 
 if 'clipboard' in toot_split:
     media_id = ''
@@ -89,8 +91,10 @@ if 'clipboard' in toot_split:
 
 if 'in_reply_to_id' in toot_split and 'silent' not in toot_split:
     import json
-    who_reply_to = json.loads(requests.get(instance+'/api/v1/statuses/'+hd['in_reply_to_id']).content.decode('utf-8'))['account']['acct']
-    hd['status'] += ' @'+who_reply_to
+    #who_reply_to = json.loads(requests.get(instance+'/api/v1/statuses/'+hd['in_reply_to_id']).content.decode('utf-8'))['account']['acct']
+    mention = json.loads(requests.get(instance+'/api/v1/statuses/'+hd['in_reply_to_id']).content.decode('utf-8'))['mentions']
+    for j in mention:
+        hd['status'] += ' @'+j['acct']
 
 if 'web' in toot_split:
     try:
