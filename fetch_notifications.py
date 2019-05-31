@@ -33,8 +33,9 @@ for noti in notis:
         item = dict()
         item["title"] = strip(noti['status']['content'])
         item["subtitle"] = "from: "+str(noti['account']['acct'])
-        mention = ['@'+i['acct'] for i in noti['status']['mentions']]
-        item["arg"] = '{"status":"'+str(reply)+'","in_reply_to_id":"'+str(noti['status']['id'])+'","acct":"'+' '.join(mention)+'"}'
+        mention_from = str(noti['account']['acct'])
+        mention_to = ['@'+i['acct'] for i in noti['status']['mentions']] # @acct
+        item["arg"] = '{"status":"'+str(reply)+'","in_reply_to_id":"'+str(noti['status']['id'])+'","mention_from":"'+mention_from+'","mention_to":"'+' '.join(mention)+'"}'
         items.append(item)
 results = {"items":items}
 print(json.dumps(results))

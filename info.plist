@@ -406,6 +406,8 @@ end alfred_script</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -444,7 +446,7 @@ end alfred_script</string>
 			<key>uid</key>
 			<string>D09F5FBF-A1FE-456A-834C-3B1835A36B58</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -558,6 +560,8 @@ end alfred_script</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -596,7 +600,7 @@ end alfred_script</string>
 			<key>uid</key>
 			<string>083215CD-67DD-4ACF-9A8E-19ABE1A8DD2B</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -649,6 +653,8 @@ end alfred_script</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -687,7 +693,7 @@ end alfred_script</string>
 			<key>uid</key>
 			<string>979BF0F5-8399-4068-9FE2-1477A2931062</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -719,6 +725,8 @@ end alfred_script</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -757,7 +765,7 @@ end alfred_script</string>
 			<key>uid</key>
 			<string>F50B4021-8118-4DF7-BB39-78A8DF3BE97B</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -937,6 +945,6 @@ end alfred_script</string>
 	<key>version</key>
 	<string>1.0-9</string>
 	<key>webaddress</key>
-	<string>http://canor.cf</string>
+	<string>http://canor.kr</string>
 </dict>
 </plist>
