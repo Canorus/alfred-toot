@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+-*- coding: utf-8 -*-
 import sys
 from plistlib import load
 import requests
@@ -33,8 +33,12 @@ for noti in notis:
         item = dict()
         item["title"] = strip(noti['status']['content'])
         item["subtitle"] = "from: "+str(noti['account']['acct'])
-        mention = ['@'+i['acct'] for i in noti['status']['mentions']]
-        item["arg"] = '{"status":"'+str(reply)+'","in_reply_to_id":"'+str(noti['status']['id'])+'","acct":"'+' '.join(mention)+'"}'
+        if noti['status']['mentions']:
+		mention = ['@'+i['acct'] for i in noti['status']['mentions']]
+		mention.append(str(noti['account']['acct']))
+	else:
+		mention = []
+        item["arg"] = '{"status":"'+str(reply)+'","in_reply_to_id":"'+str(noti['status']['id'])+'","acct":"'+str(mention)+'"}' # list 어떻게 넘겨야 되지
         items.append(item)
 results = {"items":items}
 print(json.dumps(results))
