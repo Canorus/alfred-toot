@@ -5,12 +5,18 @@ import unicodedata
 import re
 
 toot = sys.argv[1]
-#info = readPlist('info.plist')
 info = load(open('info.plist','rb'))
 access = info['variables']['access_key']
 instance = info['variables']['instance']
 status_h = {'Authorization':'Bearer '+access}
 hd = dict()
+
+# initial setting
+cw = 0
+visib = 0
+prev = 0
+to = 0
+split = 1
 
 def clipboard_image():
     import io
@@ -30,8 +36,6 @@ def clipboard_image():
     media_id = r.json()['id']
     print('media_id in function is '+media_id)
 
-split = 1
-
 try:
     toot_sp = re.compile(" !.*?:.?").split(toot)
     toot_split = re.findall(' !.*?:',toot)
@@ -48,11 +52,13 @@ except:
 # alternatives
 try:
     toot_split[toot_split.index('cw')] = 'spoiler_text'
+    cw = 1
 except:
     pass
 
 try:
     toot_split[toot_split.index('visib')] = 'visibility'
+    visib = 1
 except:
     pass
 
@@ -63,6 +69,7 @@ except:
 
 try:
     toot_split[toot_split.index('to')] = 'in_reply_to_id'
+    to = 1
 except:
     pass
 
@@ -74,11 +81,12 @@ if split:
 
 if 'prev' in toot_split:
     account_id = requests.get(instance+'/api/v1/accounts/verify_credentials',headers=status_h).json()['id']
-    #print(requests.get(instance+'/api/v1/accounts/verify_credentials',headers=status_h).json())
     prev_status = requests.get(instance+'/api/v1/accounts/'+account_id+'/statuses',headers=status_h).json()[0]
     hd['in_reply_to_id']=prev_status['id']
-    hd['spoiler_text'] = prev_status['spoiler_text']
-    hd['visibility'] = prev_status['visibility']
+    if not cw:
+        hd['spoiler_text'] = prev_status['spoiler_text']
+    if not visib:
+        hd['visibility'] = prev_status['visibility']
 
 if 'clipboard' in toot_split:
     media_id = ''
@@ -91,7 +99,6 @@ if 'clipboard' in toot_split:
 
 if 'in_reply_to_id' in toot_split and 'silent' not in toot_split:
     import json
-    #who_reply_to = json.loads(requests.get(instance+'/api/v1/statuses/'+hd['in_reply_to_id']).content.decode('utf-8'))['account']['acct']
     mention = json.loads(requests.get(instance+'/api/v1/statuses/'+hd['in_reply_to_id']).content.decode('utf-8'))['mentions']
     for j in mention:
         hd['status'] += ' @'+j['acct']
@@ -107,6 +114,4 @@ if 'web' in toot_split:
     except:
         pass
 
-#print('hd is '+str(hd))
 st = requests.post(instance+'/api/v1/statuses',data=hd,headers=status_h)
-#print(st.json())
