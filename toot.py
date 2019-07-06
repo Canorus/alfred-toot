@@ -1,22 +1,28 @@
 import sys
-from plistlib import load
+import re
+import json
 import requests
 import unicodedata
-import re
+from plistlib import load
 
-toot = sys.argv[1]
+i = sys.argv[1]
+
 info = load(open('info.plist','rb'))
-access = info['variables']['access_key']
 instance = info['variables']['instance']
+access = info['variables']['access_key']
 status_h = {'Authorization':'Bearer '+access}
-hd = dict()
 
-# initial setting
-cw = 0
-visib = 0
-prev = 0
-to = 0
-split = 1
+keys = re.findall(" !.*?:",i)
+if len(keys):
+    values = re.compile(" !.*?:.*?").split(i)
+    for j in range(len(keys)):
+        keys[j] = keys[j][2:-1]
+    keys.insert(0,'status')
+    p = dict()
+    for key in range(len(keys)):
+        p[keys[key]] = unicodedata.normalize('NFC',values[key].strip())
+else:
+    p = {'status':unicodedata.normalize('NFC',i)}
 
 def clipboard_image():
     import io
@@ -30,88 +36,56 @@ def clipboard_image():
         return
     img = img.getvalue()
     files = {'file':img}
-    r = requests.post(instance+'/api/v1/media',headers=status_h,files=files)
+    r = requests.post(instance+'/api/v1/media',headers=status_h, files=files)
     print(r.status_code)
-    global media_id
     media_id = r.json()['id']
-    print('media_id in function is '+media_id)
+    return media_id
 
-try:
-    toot_sp = re.compile(" !.*?:.?").split(toot)
-    toot_split = re.findall(' !.*?:',toot)
-    for i in range(len(toot_split)):
-        toot_split[i] = toot_split[i][2:-1]
-    toot_split.insert(0,'status')
-except:
-    # if finding param breaks
-    # just make status into hd dic
-    # else it will be handled after converting params
-    hd['status']=toot
-    split = 0
-
-# alternatives
-try:
-    toot_split[toot_split.index('cw')] = 'spoiler_text'
-    cw = 1
-except:
-    pass
-
-try:
-    toot_split[toot_split.index('visib')] = 'visibility'
-    visib = 1
-except:
-    pass
-
-try:
-    toot_split[toot_split.index('cb')] = 'clipboard'
-except:
-    pass
-
-try:
-    toot_split[toot_split.index('to')] = 'in_reply_to_id'
-    to = 1
-except:
-    pass
-
-# make params into hd dic
-
-if split:
-    for i in range(len(toot_sp)):
-        hd[toot_split[i]] = unicodedata.normalize('NFC',toot_sp[i])
-
-if 'prev' in toot_split:
+def get_prev():
     account_id = requests.get(instance+'/api/v1/accounts/verify_credentials',headers=status_h).json()['id']
     prev_status = requests.get(instance+'/api/v1/accounts/'+account_id+'/statuses',headers=status_h).json()[0]
-    hd['in_reply_to_id']=prev_status['id']
-    if not cw:
-        hd['spoiler_text'] = prev_status['spoiler_text']
-    if not visib:
-        hd['visibility'] = prev_status['visibility']
+    return prev_status
 
-if 'clipboard' in toot_split:
-    media_id = ''
-    clipboard_image()
-    try:
-        del hd['clipboard']
-    except:
-        del hd['cb']
-    hd['media_ids[]']=media_id
-
-if 'in_reply_to_id' in toot_split and 'silent' not in toot_split:
-    import json
-    mention = json.loads(requests.get(instance+'/api/v1/statuses/'+hd['in_reply_to_id']).content.decode('utf-8'))['mentions']
-    for j in mention:
-        hd['status'] += ' @'+j['acct']
-
-if 'web' in toot_split:
+def get_url():
     try:
         import subprocess
         currentTabUrl = str(subprocess.check_output(['osascript','browser.scpt']))[2:-3]
         url = currentTabUrl
         if currentTabUrl == 'browser not in front':
             raise
-        hd['status'] += '\n\n'+url # might need encoding. later
+        return url # might need encoding. later
     except:
         pass
 
-st = requests.post(instance+'/api/v1/statuses',data=hd,headers=status_h)
+if 'web' in keys:
+    u = get_url()
+    p['web'] = u
+if 'prev' in keys:
+    p['prev']=True
+if 'cb' in keys:
+    p['cb'] = True
+
+def sendtoot(status, cw=None, visib='unlisted', web=None, cb=None, prev=None, to=None, *args):
+    da = dict()
+    da['status'] = status
+    if cw:
+        da['spoiler_text'] = cw
+    da['visibility'] = visib
+    if web: # input is url
+        da['status'] += '\n\n' + str(web)
+    if to:
+        da['in_reply_to_id'] = to
+    if prev:
+        prev_stat = get_prev()
+        da['in_reply_to_id'] = prev_stat['id']
+        if not cw:
+            da['spoiler_text'] = prev_stat['spoiler_text']
+        if not visib:
+            da['visibility'] = prev_stat['visibility']
+    if cb:
+        media_id = clipboard_image()
+        da['media_ids[]'] = media_id
+    r = requests.post(instance + '/api/v1/statuses', headers=status_h, data=da)
+    print(r.json()['id'])
+
+sendtoot(**p)
