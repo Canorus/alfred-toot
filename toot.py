@@ -56,6 +56,22 @@ def get_url():
         return url # might need encoding. later
     except:
         pass
+# trim every 500 char, returns list
+def trim(t):
+    t_ = t.split(' ')
+    a = list()
+    s = ''
+    n = 0
+    for i in t_:
+        if n + 1 + len(i) > 500:
+            a.append(s.strip())
+            s = i
+            n = len(i)
+        else:
+            s += ' ' + i
+            n += len(i) + 1
+    a.append(s.strip())
+    return a
 
 if 'web' in keys:
     u = get_url()
@@ -88,4 +104,17 @@ def sendtoot(status, cw=None, visib='unlisted', web=None, cb=None, prev=None, to
     r = requests.post(instance + '/api/v1/statuses', headers=status_h, data=da)
     print(r.json()['id'])
 
-sendtoot(**p)
+if len(p['status']) < 500:
+    sendtoot(**p)
+else:
+    t = p['status']
+    sl = trim(t)
+    for s in range(len(sl)):
+        p1 = p
+        if s == 0:
+            p1['status'] = sl[s]
+            sendtoot(**p1)
+        else:
+            p1['status'] = sl[s]
+            p1['prev'] = True
+            sendtoot(**p1)
