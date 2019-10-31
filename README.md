@@ -28,7 +28,7 @@ alfred 워크플로우에서 툿을 발송하는 워크플로우입니다.
 
 인증을 하면 코드를 줍니다. 이 코드를 복사합니다. 아직 창 닫지 마세요.
 
-![input key code](imaes/04.png)
+![input key code](images/04.png)
 
 `too` 키워드로 다시 워크플로우를 불러내서 인증코드를 입력하고 key code 항목을 선택해줍니다. 인스턴스 입력이 올바르게 되었는지 확인할 수 있습니다.(instance address 항목 아래 작은 글자)
 
