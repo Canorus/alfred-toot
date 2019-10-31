@@ -12,6 +12,8 @@ instance = info['variables']['instance']
 access = info['variables']['access_key']
 status_h = {'Authorization':'Bearer '+access}
 
+visib = info['variables']['visibility']
+
 keys = re.findall(" !.*?:",i)
 if len(keys):
     values = re.compile(" !.*?:.*?").split(i)
@@ -80,8 +82,10 @@ if 'prev' in keys:
     p['prev']=True
 if 'cb' in keys:
     p['cb'] = True
+if 'base' in keys:
+    p['base'] = True
 
-def sendtoot(status, cw=None, visib='unlisted', web=None, cb=None, prev=None, to=None, *args):
+def sendtoot(status, cw=None, visib=visib, web=None, cb=None, prev=None, to=None, base=None, *args):
     da = dict()
     da['status'] = status
     if cw:
@@ -101,6 +105,9 @@ def sendtoot(status, cw=None, visib='unlisted', web=None, cb=None, prev=None, to
     if cb:
         media_id = clipboard_image()
         da['media_ids[]'] = media_id
+    if base:
+        import base64
+        da['status'] = base64.encodestring(da['status'].encode('utf-8')).decode('utf-8')
     r = requests.post(instance + '/api/v1/statuses', headers=status_h, data=da)
     print(r.json()['id'])
 
