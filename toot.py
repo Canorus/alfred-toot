@@ -12,8 +12,6 @@ instance = info['variables']['instance']
 access = info['variables']['access_key']
 status_h = {'Authorization':'Bearer '+access}
 
-visib = info['variables']['visibility']
-
 keys = re.findall(" !.*?:",i)
 if len(keys):
     values = re.compile(" !.*?:.*?").split(i)
@@ -85,7 +83,7 @@ if 'cb' in keys:
 if 'base' in keys:
     p['base'] = True
 
-def sendtoot(status, cw=None, visib=visib, web=None, cb=None, prev=None, to=None, base=None, *args):
+def sendtoot(status, cw=None, visib=None, web=None, cb=None, prev=None, to=None, base=None, *args):
     da = dict()
     da['status'] = status
     if cw:
@@ -102,6 +100,8 @@ def sendtoot(status, cw=None, visib=visib, web=None, cb=None, prev=None, to=None
             da['spoiler_text'] = prev_stat['spoiler_text']
         if not visib:
             da['visibility'] = prev_stat['visibility']
+    else:
+        visib = info['variables']['visibility']
     if cb:
         media_id = clipboard_image()
         da['media_ids[]'] = media_id
